@@ -1,7 +1,8 @@
 FROM node:18-alpine
-RUN apk add --no-cache build-base gcc autoconf automake libpng-dev vips-dev > /dev/null 2>&1
+RUN apk add --no-cache build-base gcc autoconf automake libpng-dev vips-dev python3 make g++ > /dev/null 2>&1
 
 WORKDIR /opt/app
+
 COPY package.json package-lock.json ./
 RUN npm install
 
