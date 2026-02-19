@@ -1,18 +1,12 @@
-FROM node:20-alpine AS build
-RUN apk update && apk add --no-cache build-base gcc autoconf automake libtool zlib-dev libpng-dev vips-dev
-WORKDIR /opt/
-COPY package.json package-lock.json ./
-RUN npm install
+FROM node:18-alpine
 WORKDIR /opt/app
-COPY . .
-RUN npm run build
+COPY package.json ./
+COPY package-lock.json ./
 
-FROM node:20-alpine
-RUN apk add --no-cache vips-dev
-WORKDIR /opt/
-COPY --from=build /opt/node_modules ./node_modules
-WORKDIR /opt/app
-COPY --from=build /opt/app ./
-ENV NODE_ENV=production
+RUN npm install
+
+COPY . .
+
+RUN npm run build
 EXPOSE 1337
-CMD ["npm", "run", "start"]
+CMD ["npm", "run", "develop"]

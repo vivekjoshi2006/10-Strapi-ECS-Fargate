@@ -1,0 +1,21 @@
+{
+  "name": "10-strapi-ecs-fargate",
+  "version": "1.0.0",
+  "description": "Deploying a strapi application on AWS using ECS Fargate, managed entirely via terraform",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vivekjoshi2006/10-Strapi-ECS-Fargate.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/vivekjoshi2006/10-Strapi-ECS-Fargate/issues"
+  },
+  "homepage": "https://github.com/vivekjoshi2006/10-Strapi-ECS-Fargate#readme"
+}
