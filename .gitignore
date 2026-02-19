@@ -9,7 +9,7 @@ override.tf
 override.tf.json
 .terraform.lock.hcl
 
-# --- AWS & Heavy Binaries ---
+# --- AWS ---
 terraform/aws/
 awscliv2.zip
 *.zip
@@ -24,6 +24,3 @@ build/
 dist/
 .env
 
-# --- OS Specific ---
-.DS_Store
-Thumbs.db
