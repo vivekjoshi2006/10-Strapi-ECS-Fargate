@@ -44,4 +44,3 @@ To view the results of Task 7:
 2. Navigate to **CloudWatch > Dashboards** to view the "Strapi-Monitoring-Dashboard".
 
 
-**Kya aapka README update ho gaya?** Iske baad aapka project submission ke liye ekdum "Grade-A" quality ka lag raha hai!
