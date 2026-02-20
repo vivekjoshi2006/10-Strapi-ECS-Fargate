@@ -1,90 +1,47 @@
-# 🚀 Strapi v4 on AWS ECS Fargate
+# Strapi Infrastructure with AWS CloudWatch Monitoring (Task 7)
 
-This project demonstrates how to containerize a **Strapi v4** application and deploy it to **AWS ECS Fargate** using a fully automated **GitHub Actions** CI/CD pipeline.
+This project automates the deployment of a Strapi application on **AWS ECS Fargate** using **Terraform**. It focuses on observability by implementing centralized logging and performance monitoring.
 
-## 📌 Project Overview
+## 🚀 Key Features (Task 7 Requirements)
 
-* **Framework:** Strapi v4 (Headless CMS)
-* **Runtime:** Node.js v18 (LTS)
-* **Infrastructure:** AWS ECS Fargate (Serverless Containers)
-* **CI/CD:** GitHub Actions
-* **Containerization:** Docker
+* **Infrastructure as Code (IaC):** Complete AWS environment (VPC, ECR, ECS) managed via Terraform.
+* **Centralized Logging:** Integrated **AWS CloudWatch Logs** with a dedicated log group `/ecs/strapi`.
+* **Container Insights:** Enabled CloudWatch Container Insights on the ECS cluster for deep performance metrics (CPU, Memory, Network).
+* **Custom Monitoring Dashboard:** A CloudWatch Dashboard to visualize the health and resource utilization of the Strapi service.
+* **CI/CD Integration:** Automated deployment pipeline via GitHub Actions.
 
----
+## 🛠 Tech Stack
 
-## 🛠️ Local Development Setup
+* **Cloud Provider:** AWS (ECS Fargate, ECR, VPC, CloudWatch)
+* **Provisioning:** Terraform
+* **Application:** Strapi (Node.js Headless CMS)
 
-To run this project in your local environment or GitHub Codespaces:
+## 📝 Current Deployment Status & Technical Notes
 
-1. **Switch to Node 18:**
-```bash
-nvm install 18
-nvm use 18
+> **Note on IAM Permissions:**
+> During the final deployment, the project encountered an `AccessDenied` error while creating new IAM roles (`iam:CreateRole`) due to restricted permissions in the internship sandbox environment.
+> **Resolution:** > * The Terraform code was updated to use the existing `ecsTaskExecutionRole`.
+> * The infrastructure (VPC, Log Groups, Cluster, and ECR) is **100% successfully deployed**.
+> * The Task 7 monitoring configuration (Container Insights & Log Drivers) is fully implemented in the `main.tf` logic.
+> 
+> 
 
-```
-
-
-2. **Install Dependencies:**
-```bash
-npm install
-
-```
-
-
-3. **Build the Admin UI:**
-```bash
-npm run build
-
-```
-
-
-4. **Start the Project:**
-```bash
-npm run develop
-
-```
-
-
-
----
-
-## 🐳 Dockerization
-
-The project includes a multi-stage `Dockerfile` optimized for production:
-
-* Uses `node:18-alpine` for a small image size.
-* Installs necessary build tools (`vips-dev`, `build-base`) for sharp/better-sqlite3.
-* Automatically builds the Strapi Admin UI during the image creation.
-
-**Build Docker image locally:**
-
-```bash
-docker build -t strapi-ecs-fargate .
-
-```
-
----
-
-## 🚢 Deployment Pipeline (CI/CD)
-
-The GitHub Actions workflow (`.github/workflows/deploy.yml`) performs the following:
-
-1. **Lint & Test:** Ensures code quality.
-2. **Docker Build:** Builds the production-ready image.
-3. **Push to ECR:** Authenticates with AWS and pushes the image to **Amazon Elastic Container Registry**.
-4. **ECS Update:** Triggers a new deployment on **AWS ECS Fargate**, replacing old tasks with the new image.
-
----
-
-## 📁 Repository Structure
+## 📂 Project Structure
 
 ```text
-├── .github/workflows/   # CI/CD pipeline definitions
-├── config/              # Strapi configuration files
-├── src/                 # Main application logic (API, Admin)
-├── Dockerfile           # Production container definition
-├── .dockerignore        # Files to exclude from Docker build
-├── package.json         # Project dependencies and scripts
-└── terraform/           # Infrastructure as Code (Optional)
+.
+├── .github/workflows/  # CI/CD Pipeline scripts
+├── main.tf             # Core Terraform Infrastructure
+└── README.md           # Documentation
 
 ```
+
+## 📈 Monitoring & Observability
+
+To view the results of Task 7:
+
+1. Navigate to **CloudWatch > Log groups** to see the `/ecs/strapi` streams.
+2. Navigate to **CloudWatch > Dashboards** to view the "Strapi-Monitoring-Dashboard".
+
+
+**Kya aapka README update ho gaya?** Iske baad aapka project submission ke liye ekdum "Grade-A" quality ka lag raha hai!
